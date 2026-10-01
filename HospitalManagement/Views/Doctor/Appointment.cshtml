@@ -1,0 +1,95 @@
+@model HospitalManagement.Models.Doctor
+
+@{
+    ViewData["Title"] = "QuickCare Appointment";
+}
+
+<div class="container mt-5">
+
+    <div class="card shadow p-4">
+
+        <h2>
+            📅 QuickCare Appointment
+        </h2>
+
+        <p>
+            Doctor:
+            <strong>@Model.DoctorName</strong>
+        </p>
+
+        <p>
+            Specialization:
+            <strong>@Model.Specialization</strong>
+        </p>
+
+        @if (ViewBag.PatientName == null)
+        {
+            <form method="post"
+                  action="/Doctor/Appointment">
+
+                <!-- Hidden field sends DoctorId without showing it to the user. -->
+                <input type="hidden"
+                       name="DoctorId"
+                       value="@Model.DoctorId" />
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Patient Name
+                    </label>
+
+                    <input type="text"
+                           name="PatientName"
+                           class="form-control"
+                           placeholder="Enter patient name"
+                           required />
+
+                </div>
+
+                <button type="submit"
+                        class="btn btn-success">
+                    Confirm Appointment
+                </button>
+
+            </form>
+        }
+        else
+        {
+            <div class="alert alert-success">
+
+                <h4>✅ Appointment Request Received</h4>
+
+                <p>
+                    Patient:
+                    <strong>@ViewBag.PatientName</strong>
+                </p>
+
+                <p>
+                    Specialization:
+                    <strong>@ViewBag.Specialization</strong>
+                </p>
+
+                <p>
+                    Total Charge:
+                    <strong>₹@ViewBag.TotalCharge</strong>
+                </p>
+
+                <p>
+                    Patient information has been saved using a cookie.
+                </p>
+
+                <p>
+                    Selected specialization has been stored using session.
+                </p>
+
+            </div>
+
+            <a href="/Doctor/Index"
+               class="btn btn-primary">
+                Back to Doctors
+            </a>
+        }
+
+    </div>
+
+</div>

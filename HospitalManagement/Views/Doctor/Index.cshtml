@@ -1,0 +1,122 @@
+@model List<HospitalManagement.Models.Doctor>
+
+@{
+    ViewData["Title"] = "QuickCare Smart Appointment";
+}
+
+<style>
+    body {
+        background: #f4f8fb;
+        font-family: Arial, sans-serif;
+    }
+
+    .header {
+        background: #123c69;
+        color: white;
+        padding: 25px;
+        border-radius: 15px;
+        margin-bottom: 25px;
+    }
+
+    .doctor-card {
+        background: white;
+        border-radius: 15px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    }
+
+    .doctor-icon {
+        font-size: 40px;
+    }
+
+    .fee {
+        color: #0b7a75;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .btn-custom {
+        background: #123c69;
+        color: white;
+        border-radius: 20px;
+        padding: 8px 18px;
+        text-decoration: none;
+    }
+
+    .btn-custom:hover {
+        background: #0b7a75;
+        color: white;
+    }
+</style>
+
+<div class="header">
+    <h1>🏥 QuickCare</h1>
+
+    <p>
+        Smart doctor discovery and appointment portal
+    </p>
+
+    @if (!string.IsNullOrEmpty(ViewBag.PatientName))
+    {
+        <p>
+            Welcome back, <strong>@ViewBag.PatientName</strong>!
+        </p>
+    }
+</div>
+
+<div class="row">
+
+    @foreach (var doctor in Model)
+    {
+        <div class="col-md-6">
+
+            <div class="doctor-card">
+
+                <div class="doctor-icon">
+                    🩺
+                </div>
+
+                <h3>
+                    @doctor.DoctorName
+                </h3>
+
+                <p>
+                    <strong>Specialization:</strong>
+                    @doctor.Specialization
+                </p>
+
+                <p>
+                    <strong>Experience:</strong>
+                    @doctor.Experience years
+                </p>
+
+                <p class="fee">
+                    Consultation: ₹@doctor.ConsultationFee
+                </p>
+
+                <a class="btn-custom"
+                   href="/Doctor/Details?id=@doctor.DoctorId">
+                    View Details
+                </a>
+
+                <a class="btn-custom"
+                   href="/Doctor/Appointment?id=@doctor.DoctorId">
+                    Book Appointment
+                </a>
+
+            </div>
+
+        </div>
+    }
+
+</div>
+
+<div class="text-center mt-4">
+
+    <a class="btn btn-dark"
+       href="/Doctor/Posts">
+        📰 Open Live Health Feed
+    </a>
+
+</div>

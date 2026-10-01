@@ -1,0 +1,59 @@
+@model HospitalManagement.Models.Doctor
+
+@{
+    ViewData["Title"] = "Doctor Details";
+}
+
+<div class="container mt-5">
+
+    <div class="card shadow p-4">
+
+        <h1>
+            🩺 @Model.DoctorName
+        </h1>
+
+        <hr />
+
+        <p>
+            <strong>Doctor ID:</strong>
+            @Model.DoctorId
+        </p>
+
+        <p>
+            <strong>Specialization:</strong>
+            @Model.Specialization
+        </p>
+
+        <p>
+            <strong>Experience:</strong>
+            @Model.Experience years
+        </p>
+
+        <p>
+            <strong>Consultation Fee:</strong>
+            ₹@Model.ConsultationFee
+        </p>
+
+        <div class="alert alert-success">
+
+            <strong>
+                Total Consultation Charge:
+            </strong>
+
+            ₹@ViewBag.TotalCharge
+
+        </div>
+
+        <a class="btn btn-primary"
+           href="/Doctor/Appointment?id=@Model.DoctorId">
+            Book Appointment
+        </a>
+
+        <a class="btn btn-secondary"
+           href="/Doctor/Index">
+            Back
+        </a>
+
+    </div>
+
+</div>

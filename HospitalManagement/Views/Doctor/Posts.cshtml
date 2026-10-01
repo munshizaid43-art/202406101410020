@@ -1,0 +1,63 @@
+@model List<HospitalManagement.Controllers.Post>
+
+@{
+    ViewData["Title"] = "Live Health Feed";
+}
+
+<div class="container mt-5">
+
+    <div class="card shadow p-4">
+
+        <h2>
+            📰 Live Health Feed
+        </h2>
+
+        <p>
+            Data loaded asynchronously from JSONPlaceholder.
+        </p>
+
+        <table class="table table-bordered table-hover">
+
+            <thead class="table-dark">
+
+                <tr>
+                    <th>
+                        Post ID
+                    </th>
+
+                    <th>
+                        Health Feed Title
+                    </th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                @foreach (var post in Model)
+                {
+                    <tr>
+
+                        <td>
+                            @post.Id
+                        </td>
+
+                        <td>
+                            @post.Title
+                        </td>
+
+                    </tr>
+                }
+
+            </tbody>
+
+        </table>
+
+        <a href="/Doctor/Index"
+           class="btn btn-primary">
+            Back to QuickCare
+        </a>
+
+    </div>
+
+</div>
